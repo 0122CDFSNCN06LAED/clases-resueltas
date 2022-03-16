@@ -1,0 +1,5 @@
+[
+  { "titulo": "Estudiar Javascript", "estado": "EN_PROGRESO" },
+  { "titulo": "Estudiar GIT", "estado": "PENDIENTE" },
+  { "estado": "PENDIENTE", "titulo": "mi nueva tarea" }
+]

@@ -18,6 +18,10 @@ body {
   background-color: #39b54a;
 }
 
+.text-green {
+  color: #39b54a;
+}
+
 .text-center {
   text-align: center;
 }
@@ -28,4 +32,8 @@ body {
 
 .width-100 {
   width: 100%;
+}
+
+.padding-8 {
+  padding: 8px;
 }

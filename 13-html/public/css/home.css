@@ -11,3 +11,33 @@
   padding: 6px;
   margin-top: 8px;
 }
+
+.delivery-icon {
+  width: 25px;
+  height: 25px;
+}
+
+main {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.product-card {
+  box-shadow: 0px 0px 10px rgb(100, 100, 100);
+}
+
+/* Tablet + */
+@media (min-width: 480px) {
+  /* nada por ahora*/
+}
+
+/* Laptop + */
+@media (min-width: 768px) {
+  .product-card {
+    box-shadow: none;
+  }
+
+  .product-card .description {
+    display: none;
+  }
+}

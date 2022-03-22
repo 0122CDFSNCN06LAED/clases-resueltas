@@ -13,8 +13,33 @@
 }
 
 .delivery-icon {
-  width: 25px;
-  height: 25px;
+  display: block;
+  font-size: 16px;
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #39b54a;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  right: 20px;
+  top: -15px;
+}
+
+.description-box {
+  position: relative;
+  border-top: 1px solid #ebebeb;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 15px;
+}
+
+.price {
+  flex-grow: 0.33;
+}
+
+.discount {
+  flex-grow: 0.66;
 }
 
 main {
@@ -24,17 +49,39 @@ main {
 
 .product-card {
   box-shadow: 0px 0px 10px rgb(100, 100, 100);
+  margin-bottom: 16px;
+  margin-right: 8px;
+  margin-left: 8px;
+}
+
+.description {
+  width: 100%;
+}
+
+.section-title {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.article-container {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 /* Tablet + */
 @media (min-width: 480px) {
   /* nada por ahora*/
+  .product-card {
+    width: calc(50% - 16px);
+  }
 }
 
 /* Laptop + */
 @media (min-width: 768px) {
   .product-card {
     box-shadow: none;
+
+    width: calc(25% - 16px);
   }
 
   .product-card .description {

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mi super App</title>
+  </head>
+  <body>
+    <% if (userData) { %>
+    <p>
+      Hola <%= userData.name %>, elegiste el color: <%= userData.color %>, tu
+      email es: <%= userData.email %> y tu edad es: <%= userData.age %>
+    </p>
+    <% } else { %>
+    <p>Hola usuario invitado. Cargá tus datos!</p>
+    <% } %>
+
+    <form action="/" method="POST">
+      <div>
+        <input type="text" name="name" id="name" placeholder="Nombre" />
+        <% if (errors && errors.name) { %>
+        <p style="color: red"><%= errors.name.msg %></p>
+        <% } %>
+      </div>
+      <div>
+        <select name="color" id="color">
+          <option value="red">Rojo</option>
+          <option value="blue">Azul</option>
+          <option value="green">Green</option>
+        </select>
+        <% if (errors && errors.color) { %>
+        <p style="color: red"><%= errors.color.msg %></p>
+        <% } %>
+      </div>
+      <div>
+        <input type="email" name="email" placeholder="Email" />
+        <% if (errors && errors.email) { %>
+        <p style="color: red"><%= errors.email.msg %></p>
+        <% } %>
+      </div>
+      <div>
+        <input type="number" name="age" placeholder="Edad" />
+        <% if (errors && errors.age) { %>
+        <p style="color: red"><%= errors.age.msg %></p>
+        <% } %>
+      </div>
+      <button type="submit">Enviar</button>
+    </form>
+  </body>
+</html>

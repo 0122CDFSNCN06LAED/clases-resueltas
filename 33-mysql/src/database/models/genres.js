@@ -14,5 +14,12 @@ module.exports = (sequelize, dataTypes) => {
 
   // relaciones
 
+  Genres.associate = (models) => {
+    Genres.hasMany(models.Movies, {
+      as: "movies",
+      foreignKey: "genre_id",
+    });
+  };
+
   return Genres;
 };

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agregar género</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <figure>
+      <img src="/img/logo-DH.png" alt="Logo Digital House" />
+    </figure>
+    <h1>Agregar género</h1>
+    <form action="/movies/create" method="POST">
+      <div>
+        <label for="name">Nombre</label
+        ><input id="name" type="text" name="name" />
+      </div>
+      <div>
+        <label for="ranking">Ranking</label
+        ><input id="ranking" type="number" name="ranking" step="1" />
+      </div>
+
+      <button type="submit">Guardar!</button>
+    </form>
+  </body>
+</html>

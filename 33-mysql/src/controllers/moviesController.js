@@ -4,7 +4,17 @@ const db = require("../database/models");
 
 module.exports = {
   list: (req, res) => {
-    db.Movies.findAll().then((movies) => {
+    db.Movies.findAll({
+      include: [
+        {
+          association: "actors",
+        },
+        {
+          association: "genre",
+        },
+      ],
+    }).then((movies) => {
+      console.log(JSON.stringify(movies, null, 4));
       res.render("moviesList", {
         movies: movies,
       });
@@ -42,7 +52,15 @@ module.exports = {
     });
   },
   add: (req, res) => {
-    res.render("moviesAdd");
+    const genresPromise = db.Genres.findAll();
+    const actorsPromise = db.Actors.findAll();
+
+    Promise.all([genresPromise, actorsPromise]).then(([genres, actors]) => {
+      res.render("moviesAdd", {
+        genres: genres,
+        actors: actors,
+      });
+    });
   },
   create: (req, res) => {
     db.Movies.create(req.body).then((movie) => {
@@ -52,12 +70,15 @@ module.exports = {
   },
 
   edit: (req, res) => {
-    db.Movies.findByPk(req.params.id).then((movie) => {
-      res.render("moviesEdit", {
-        movie,
-        dayjs,
-      });
-    });
+    Promise.all([db.Movies.findByPk(req.params.id), db.Genres.findAll()]).then(
+      ([movie, genres]) => {
+        res.render("moviesEdit", {
+          movie,
+          genres,
+          dayjs,
+        });
+      }
+    );
   },
 
   update: (req, res) => {
@@ -81,12 +102,12 @@ module.exports = {
   },
 
   destroy: (req, res) => {
-    db.Movies.destroy({
-      where: {
-        id: req.params.id,
-      },
-    }).then(() => {
-      res.redirect("/movies");
+    db.Movies.findByPk(req.params.id).then((movie) => {
+      movie.removeActors().then(() => {
+        movie.destroy().then(() => {
+          res.redirect("/movies");
+        });
+      });
     });
   },
 };

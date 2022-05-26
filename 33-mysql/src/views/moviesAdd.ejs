@@ -18,6 +18,14 @@
         ><input id="title" type="text" name="title" />
       </div>
       <div>
+        <label for="genre_id">Género</label>
+        <select name="genre_id" id="genre_id">
+          <% for( let i = 0; i < genres.length; i++ ) { %>
+          <option value="<%= genres[i].id %>"><%= genres[i].name %></option>
+          <% } %>
+        </select>
+      </div>
+      <div>
         <label for="rating">Rating</label
         ><input id="rating" type="number" name="rating" step="0.1" />
       </div>

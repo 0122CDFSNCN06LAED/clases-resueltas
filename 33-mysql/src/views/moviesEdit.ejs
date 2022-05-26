@@ -23,6 +23,16 @@
         />
       </div>
       <div>
+        <label for="genre_id">Género</label>
+        <select name="genre_id" id="genre_id">
+          <% for( let i = 0; i < genres.length; i++ ) { %>
+          <option value="<%= genres[i].id %>"
+            <%= movie.genre.id == genres[i].id ? "selected" : "" %> 
+            ><%= genres[i].name %></option>
+          <% } %>
+        </select>
+      </div>
+      <div>
         <label for="rating">Rating</label
         ><input
           id="rating"

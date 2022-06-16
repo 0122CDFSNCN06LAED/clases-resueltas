@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie add</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+
+  <body>
+    <figure>
+      <img src="/img/logo-DH.png" alt="Logo Digital House" />
+    </figure>
+    <h1 class="moviesAddTitulo">Agregar película</h1>
+    <br />
+    <section id="formulario">
+      <article>
+        <form action="/movies/create" method="POST" id="movie-add-form">
+          <label for="title">Titulo </label>
+          <p>
+            <input class="validateInput" type="text" name="title" id="title" />
+            <span id="titleError" style="color: red"></span>
+          </p>
+          <label for="rating">Calificación </label>
+          <p>
+            <input
+              class="validateInput"
+              type="number"
+              name="rating"
+              id="rating"
+            />
+            <span id="ratingError" style="color: red"></span>
+          </p>
+          <label for="awards">Premios </label>
+          <p>
+            <input
+              class="validateInput"
+              type="number"
+              name="awards"
+              id="awards"
+            />
+          </p>
+          <label for="release_date">Fecha de creación </label>
+          <p>
+            <input
+              class="validateInput"
+              type="date"
+              name="release_date"
+              id="release_date"
+            />
+          </p>
+          <label for="length">Duración </label>
+          <p>
+            <input
+              class="validateInput"
+              type="number"
+              name="length"
+              id="length"
+            />
+          </p>
+          <label for="genreID">Género </label>
+          <p>
+            <select class="validateInput" name="genre_id" id="genre_id">
+              <option value="" disabled selected>
+                - Seleccione el género -
+              </option>
+              <% allGenres.forEach(genre => { %>
+              <option value="<%= genre.id %>"><%= genre.name %></option>
+              <% }); %>
+            </select>
+          </p>
+          <br />
+          <p>
+            <button class="botonAgregar" type="submit">Agregar</button>
+
+            <a class="botonVolver" href="/movies">Listado de Películas</a>
+          </p>
+        </form>
+      </article>
+    </section>
+    <script src="/js/moviesAdd.js"></script>
+  </body>
+</html>

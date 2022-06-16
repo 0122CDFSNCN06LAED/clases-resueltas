@@ -10,40 +10,63 @@ window.onload = function () {
 
   const form = document.querySelector("#movie-add-form");
 
+  const inputValidations = [
+    {
+      inputName: "title",
+      validations: [
+        {
+          validator: (value) => {
+            return value.length == 0;
+          },
+          message: "el campo no puede estar vacío",
+        },
+      ],
+    },
+    {
+      inputName: "rating",
+      validations: [
+        {
+          validator: (value) => {
+            return value.length == 0;
+          },
+          message: "el campo no puede estar vacío",
+        },
+        {
+          validator: (value) => {
+            return value < 0 || value > 10;
+          },
+          message: "el valor debe ser entre 0 y 10",
+        },
+      ],
+    },
+  ];
+
   form.addEventListener("submit", (event) => {
     const errors = [];
 
-    // Capturamos lo que escribió <-
-    const titleInput = form["title"];
-    const titleValue = titleInput.value;
-    const titleError = document.querySelector("#titleError");
-    // vamos validando
-    // si no hay contenido en elValor
-    if (titleValue.length == 0) {
-      errors.push("title");
-      titleInput.classList.add("is-invalid");
-      titleError.innerHTML = "el campo no puede estar vacío";
-    } else {
-      titleInput.classList.remove("is-invalid");
-      titleError.innerHTML = "";
-    }
+    for (const inputValidation of inputValidations) {
+      const inputName = inputValidation.inputName;
+      const input = form[inputName];
+      const inputValue = input.value;
+      const inputError = document.querySelector(`#${inputName}Error`);
+      // vamos validando
+      // si no hay contenido en elValor
 
-    const ratingInput = form["rating"];
-    const ratingValue = ratingInput.value;
-    const ratingError = document.querySelector("#ratingError");
-    // vamos validando
-    // si no hay contenido en elValor
-    if (ratingValue.length == 0) {
-      errors.push("rating");
-      ratingInput.classList.add("is-invalid");
-      ratingError.innerHTML = "el campo no puede estar vacío";
-    } else if (ratingValue < 0 || ratingValue > 10) {
-      errors.push("rating");
-      ratingInput.classList.add("is-invalid");
-      ratingError.innerHTML = "el valor debe ser entre 0 y 10";
-    } else {
-      ratingInput.classList.remove("is-invalid");
-      ratingError.innerHTML = "";
+      let error = false;
+
+      for (const validation of inputValidation.validations) {
+        if (validation.validator(inputValue)) {
+          errors.push(inputName);
+          input.classList.add("is-invalid");
+          inputError.innerHTML = validation.message;
+          error = true;
+        }
+      }
+
+      if (!error) {
+        input.classList.remove("is-invalid");
+        inputError.innerHTML = "";
+      }
     }
 
     // si hubo errores?

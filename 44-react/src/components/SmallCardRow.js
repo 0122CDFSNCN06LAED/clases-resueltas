@@ -1,16 +1,32 @@
 import SmallCard from "./SmallCard";
 
+const statistics = [
+  {
+    title: "Movies in database",
+    value: 21,
+    icon: "fa-film",
+    color: "primary",
+  },
+  {
+    title: "Total awards",
+    value: 79,
+    icon: "fa-award",
+    color: "success",
+  },
+  {
+    title: "Actors quantity",
+    value: 49,
+    icon: "fa-user",
+    color: "warning",
+  },
+];
+
 function SmallCardRow() {
   return (
     <div className="row">
-      {/* <!-- Movies in Data Base --> */}
-      <SmallCard />
-
-      {/* <!-- Total awards --> */}
-      <SmallCard />
-
-      {/* <!-- Actors quantity --> */}
-      <SmallCard />
+      {statistics.map((stat) => {
+        return <SmallCard key={stat.title} {...stat} />;
+      })}
     </div>
   );
 }

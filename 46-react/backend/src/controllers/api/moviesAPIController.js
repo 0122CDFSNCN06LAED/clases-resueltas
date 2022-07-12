@@ -2,16 +2,23 @@ const db = require("../../database/models");
 
 const moviesAPIController = {
     list: (req, res) => {
-        db.Movie.findAll({
+        const page = Number(req.query.page) || 0;
+        const pageSize = req.query.pageSize ?? 10;
+
+        db.Movie.findAndCountAll({
             include: ["genre"],
-        }).then((movies) => {
+            limit: pageSize,
+            offset: pageSize * page,
+        }).then(({ count, rows }) => {
             let respuesta = {
                 meta: {
                     status: 200,
-                    total: movies.length,
+                    total: count,
                     url: req.originalUrl,
+                    hasNextPage: (page + 1) * pageSize < count,
+                    hasPrevPage: page > 0,
                 },
-                data: movies,
+                data: rows,
             };
             res.json(respuesta);
         });

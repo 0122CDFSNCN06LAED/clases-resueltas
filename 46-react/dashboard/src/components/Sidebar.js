@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 import logo from "../assets/logo-DH.png";
 
@@ -24,11 +25,11 @@ function SideBar() {
       <hr className="sidebar-divider my-0" />
 
       {/* <!-- Nav Item - Dashboard --> */}
-      <li className="nav-item active">
-        <a className="nav-link" href="/">
+      <li className="nav-item ">
+        <NavLink className="nav-link" to="/" exact activeClassName="active">
           <i className="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard - DH movies</span>
-        </a>
+        </NavLink>
       </li>
 
       {/* <!-- Divider --> */}
@@ -39,26 +40,26 @@ function SideBar() {
 
       {/* <!-- Nav Item - Pages --> */}
       <li className="nav-item">
-        <a className="nav-link collapsed" href="/">
+        <NavLink className="nav-link" to="/genres" activeClassName="active">
           <i className="fas fa-fw fa-folder"></i>
           <span>Pages</span>
-        </a>
+        </NavLink>
       </li>
 
       {/* <!-- Nav Item - Charts --> */}
       <li className="nav-item">
-        <a className="nav-link" href="/">
+        <NavLink className="nav-link" to="/last-movie" activeClassName="active">
           <i className="fas fa-fw fa-chart-area"></i>
           <span>Charts</span>
-        </a>
+        </NavLink>
       </li>
 
       {/* <!-- Nav Item - Tables --> */}
       <li className="nav-item">
-        <a className="nav-link" href="/">
+        <NavLink className="nav-link" to="/movies" activeClassName="active">
           <i className="fas fa-fw fa-table"></i>
           <span>Tables</span>
-        </a>
+        </NavLink>
       </li>
 
       {/* <!-- Divider --> */}
